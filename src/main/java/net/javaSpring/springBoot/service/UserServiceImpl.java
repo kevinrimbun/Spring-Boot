@@ -1,6 +1,7 @@
 package net.javaSpring.springBoot.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -29,6 +30,7 @@ public class UserServiceImpl implements UserService {
     private ResponseData<Object> responseData;
     private User user;
     private DetailUser detailUser;
+    private List<User> users;
     private Map<Object, Object> data;
 
     @Override
@@ -106,14 +108,35 @@ public class UserServiceImpl implements UserService {
                 detailUserRepository.save(detailUser);
             }
 
-            // detailUser = new DetailUser(request.getFirstName(), request.getLastName(), request.getPhoneNumber());
-            // detailUser.setUserId(user);
-
             // response data
             responseData = new ResponseData<Object>(HttpStatus.OK.value(), "Updated Success", detailUser);
         } else {
             responseData = new ResponseData<Object>(HttpStatus.NOT_FOUND.value(), "User Not Found", null);
         }
+        return responseData;
+    }
+
+    @Override
+    public ResponseData<Object> getById(long id) {
+        // TODO Auto-generated method stub
+        Optional<User> userOpt = userRepository.findById(id);
+        if ( userOpt.isPresent()) {
+            user = userOpt.get();
+            responseData = new ResponseData<Object>(HttpStatus.OK.value(), "success", user);
+        } else {
+            responseData = new ResponseData<Object>(HttpStatus.NOT_FOUND.value(), "empty data", null);
+        }
+        return responseData;
+    }
+
+    @Override
+    public ResponseData<Object> getAll() {
+        // TODO Auto-generated method stub
+        // find all book
+        users = userRepository.findAll();
+    
+        // response data
+        responseData = new ResponseData<Object>(HttpStatus.OK.value(), "success", user);
         return responseData;
     }
     

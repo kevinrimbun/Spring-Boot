@@ -35,14 +35,9 @@ public class DetailUser {
     @JoinColumn(name = "user_id")
     private User userId;
 
-    // @OneToOne
-    // @JoinColumn(name = "user_email", referencedColumnName = "email")
-    // private User userEmail;
-
     public DetailUser(String firstName, String lastName, String phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
     }
-
 }

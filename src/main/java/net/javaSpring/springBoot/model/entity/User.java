@@ -1,6 +1,6 @@
 package net.javaSpring.springBoot.model.entity;
 
-import java.io.Serializable;
+// import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;

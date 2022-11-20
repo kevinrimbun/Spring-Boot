@@ -3,9 +3,9 @@ package net.javaSpring.springBoot.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import net.javaSpring.springBoot.model.entity.Book;
+import net.javaSpring.springBoot.model.entity.BorrowBook;
 
 @Repository
-public interface BookRepository extends JpaRepository<Book, Long> {
-    Book findByTitle(String title);
+public interface BorrowBookRepo extends JpaRepository<BorrowBook, Long> {
+
 }

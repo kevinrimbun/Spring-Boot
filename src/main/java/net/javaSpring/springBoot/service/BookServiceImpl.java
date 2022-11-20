@@ -12,7 +12,9 @@ import java.util.Optional;
 import net.javaSpring.springBoot.model.dto.BookDto;
 import net.javaSpring.springBoot.model.dto.ResponseData;
 import net.javaSpring.springBoot.model.entity.Book;
+import net.javaSpring.springBoot.model.entity.Category;
 import net.javaSpring.springBoot.repository.BookRepository;
+import net.javaSpring.springBoot.repository.CategoryRepository;
 
 
 @Service
@@ -20,15 +22,22 @@ import net.javaSpring.springBoot.repository.BookRepository;
 public class BookServiceImpl implements BookService{
     @Autowired
     private BookRepository bookRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
   
     private ResponseData<Object> responseData;
     private Book book;
     private List<Book> books;
+    private Category category;
   
     @Override
     public ResponseData<Object> createBook(BookDto requesDto) {
       // TODO Auto-generated method stub
       book = new Book(requesDto.getTitle(), requesDto.getAuthor());
+
+      category = categoryRepository.findByName(requesDto.getCategoryName());
+      book.setCategory(category);
+
   
       // save to db
       bookRepository.save(book);
@@ -72,6 +81,9 @@ public class BookServiceImpl implements BookService{
         // update buku
         book.setTitle(request.getTitle());
         book.setAuthor(request.getAuthor());
+
+        category = categoryRepository.findByName(request.getCategoryName());
+        book.setCategory(category);
   
         // save
         bookRepository.save(book);
