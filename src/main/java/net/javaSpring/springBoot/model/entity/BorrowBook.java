@@ -40,7 +40,7 @@ public class BorrowBook {
     
     // tgl pengembalian
     @Column(name = "returned_date")
-    private LocalDateTime returned_date;
+    private LocalDateTime returnedDate;
 
     private boolean isBorrowed = true;
 

@@ -11,5 +11,5 @@ import lombok.NoArgsConstructor;
 @Data
 public class BorrowDto {
     private String bookName;
-    private Date returnedDate;
+    // private Date returnedDate;
 }
