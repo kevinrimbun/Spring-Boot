@@ -1,8 +1,6 @@
 package net.javaSpring.springBoot.model.entity;
 
-import java.security.Timestamp;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,8 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -39,18 +35,13 @@ public class BorrowBook {
     private Book book;
     
     // tgl peminjaman
-    // @CreationTimestamp
     @Column(nullable = true, name = "borrowed_date", updatable = false)
     private LocalDateTime borrowedDate = LocalDateTime.now();
     
     // tgl pengembalian
-    // @UpdateTimestamp
     @Column(name = "returned_date")
-    private Date returned_date;
+    private LocalDateTime returned_date;
 
-    private boolean isBorrowed = false;
+    private boolean isBorrowed = true;
 
-    // private LocalDateTime borrowedDate = LocalDateTime.now();
-
-    // private LocalDateTime returnedDate = LocalDateTime.now();
 }

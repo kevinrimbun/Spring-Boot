@@ -26,8 +26,8 @@ public class BorrowBookController {
     }
 
     @PostMapping("/return/{id}")
-    public ResponseEntity<Object> returnBook(@PathVariable Long id, @RequestBody BorrowDto request) {
-        responseData = borrowBookService.returnBook(id, request);
+    public ResponseEntity<Object> returnBook(@PathVariable Long id) {
+        responseData = borrowBookService.returnBook(id);
         return ResponseEntity.status(responseData.getStatus()).body(responseData);
     }
 }

@@ -56,13 +56,14 @@ public class BorrowBookImpl implements BorrowBookService {
     }
 
     @Override
-    public ResponseData<Object> returnBook(long id, BorrowDto request) {
+    public ResponseData<Object> returnBook(long id) {
         // TODO Auto-generated method stub
         Optional<BorrowBook> borrowBookOpt = borrowBookRepo.findById(id);
         if (borrowBookOpt.isPresent()) {
             borrowBook = borrowBookOpt.get();
             // borrowBook = new BorrowBook();
-            borrowBook.setReturned_date(request.getReturnedDate());
+            // borrowBook.setReturned_date(request.getReturnedDate());
+            borrowBook.getReturned_date();
             borrowBook.setBorrowed(false);
 
             borrowBookRepo.save(borrowBook);
