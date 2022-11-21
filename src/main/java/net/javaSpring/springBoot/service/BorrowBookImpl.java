@@ -46,11 +46,11 @@ public class BorrowBookImpl implements BorrowBookService {
             borrowBook.setUser(user);
 
             borrowBookRepo.save(borrowBook);
-            responseData = new ResponseData<Object>(HttpStatus.CREATED.value(), "add successfully", borrowBook);
+            responseData = new ResponseData<Object>(HttpStatus.CREATED.value(), "Borrowed Succesfully", borrowBook);
             return responseData;
 
         } else {
-            responseData = new ResponseData<Object>(HttpStatus.NOT_FOUND.value(), "User Not Found", null);
+            responseData = new ResponseData<Object>(HttpStatus.NOT_FOUND.value(), "Not succesfully borrowed", null);
         }
         return responseData;
     }
@@ -58,12 +58,20 @@ public class BorrowBookImpl implements BorrowBookService {
     @Override
     public ResponseData<Object> returnBook(long id, BorrowDto request) {
         // TODO Auto-generated method stub
-        return null;
-    }
+        Optional<BorrowBook> borrowBookOpt = borrowBookRepo.findById(id);
+        if (borrowBookOpt.isPresent()) {
+            borrowBook = borrowBookOpt.get();
+            // borrowBook = new BorrowBook();
+            borrowBook.setReturned_date(request.getReturnedDate());
+            borrowBook.setBorrowed(false);
 
-    @Override
-    public ResponseData<Object> getBorrower(Boolean status) {
-        // TODO Auto-generated method stub
-        return null;
+            borrowBookRepo.save(borrowBook);
+            responseData = new ResponseData<Object>(HttpStatus.CREATED.value(), "Returned Succesfully", borrowBook);
+            return responseData;
+
+        } else {
+            responseData = new ResponseData<Object>(HttpStatus.NOT_FOUND.value(), "Not Succesfully Returned", null);
+        }
+        return responseData;
     }
 }

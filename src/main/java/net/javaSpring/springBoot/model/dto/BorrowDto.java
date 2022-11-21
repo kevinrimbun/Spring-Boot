@@ -1,5 +1,7 @@
 package net.javaSpring.springBoot.model.dto;
 
+import java.util.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,4 +11,5 @@ import lombok.NoArgsConstructor;
 @Data
 public class BorrowDto {
     private String bookName;
+    private Date returnedDate;
 }

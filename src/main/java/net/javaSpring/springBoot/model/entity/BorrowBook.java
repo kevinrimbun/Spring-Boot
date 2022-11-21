@@ -2,6 +2,7 @@ package net.javaSpring.springBoot.model.entity;
 
 import java.security.Timestamp;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,18 +37,20 @@ public class BorrowBook {
     @ManyToOne
     @JoinColumn(name = "book_id")
     private Book book;
-
+    
+    // tgl peminjaman
     // @CreationTimestamp
     @Column(nullable = true, name = "borrowed_date", updatable = false)
     private LocalDateTime borrowedDate = LocalDateTime.now();
     
+    // tgl pengembalian
     // @UpdateTimestamp
     @Column(name = "returned_date")
-    private Timestamp returned_date;
+    private Date returned_date;
 
-    // tgl peminjaman
+    private boolean isBorrowed = false;
+
     // private LocalDateTime borrowedDate = LocalDateTime.now();
 
-    // tgl pengembalian
     // private LocalDateTime returnedDate = LocalDateTime.now();
 }

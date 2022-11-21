@@ -7,6 +7,4 @@ public interface BorrowBookService {
     ResponseData<Object> borrowBook(long id, BorrowDto request);
 
     ResponseData<Object> returnBook(long id, BorrowDto request);
-
-    ResponseData<Object> getBorrower(Boolean status);
 }
