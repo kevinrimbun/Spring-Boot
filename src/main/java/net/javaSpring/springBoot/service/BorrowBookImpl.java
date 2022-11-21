@@ -1,5 +1,6 @@
 package net.javaSpring.springBoot.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +23,7 @@ import net.javaSpring.springBoot.repository.UserRepository;
 @Service
 @Transactional
 public class BorrowBookImpl implements BorrowBookService {
+    private static final LocalDateTime LocalDateTime = java.time.LocalDateTime.now();
     @Autowired
     private UserRepository userRepository;
     @Autowired
@@ -62,8 +64,7 @@ public class BorrowBookImpl implements BorrowBookService {
         if (borrowBookOpt.isPresent()) {
             borrowBook = borrowBookOpt.get();
             // borrowBook = new BorrowBook();
-            // borrowBook.setReturned_date(request.getReturnedDate());
-            borrowBook.getReturned_date();
+            borrowBook.setReturned_date(LocalDateTime);
             borrowBook.setBorrowed(false);
 
             borrowBookRepo.save(borrowBook);
